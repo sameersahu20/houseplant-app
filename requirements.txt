@@ -1,0 +1,5 @@
+fastai
+gradio
+torch
+torchvision
+urllib3
