@@ -2,45 +2,64 @@ import os
 import gc
 import requests
 import torch
+import torchvision.transforms as T
 from fastai.vision.all import *
 import gradio as gr
 from PIL import Image
 
-# Cap CPU threads so PyTorch doesn't spin up heavy thread pools
+# Prevent PyTorch/OpenMP multi-threading segfaults on single-core containers
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
 torch.set_num_threads(1)
 
 MODEL_FILE = 'houseplant_model.pkl'
 MODEL_URL = 'https://huggingface.co/sameersahu21/houseplant-classifier-model/resolve/main/houseplant_model.pkl'
 
-# Download weights if not present or incomplete (< 10MB)
+# 1. Download model weights if missing or incomplete (< 10MB)
 if not os.path.exists(MODEL_FILE) or os.path.getsize(MODEL_FILE) < 10 * 1024 * 1024:
     print("Downloading model weights...")
-    r = requests.get(MODEL_URL, stream=True)
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    r = requests.get(MODEL_URL, headers=headers, stream=True, allow_redirects=True)
     r.raise_for_status()
     with open(MODEL_FILE, 'wb') as f:
         for chunk in r.iter_content(chunk_size=8192):
             if chunk:
                 f.write(chunk)
-    print("Download complete.")
+    print(f"Download complete! File size: {os.path.getsize(MODEL_FILE) / (1024*1024):.2f} MB")
 
+# 2. Load model
 learn = load_learner(MODEL_FILE)
 learn.model.eval()
 
-# No warm-up prediction here — preserve RAM for server startup!
+# Extract vocabulary labels directly
+vocab = list(learn.dls.vocab)
+
+# Standard ImageNet normalization used by FastAI vision models
+transform_pipeline = T.Compose([
+    T.Resize((224, 224)),
+    T.ToTensor(),
+    T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+])
 
 def predict(img):
+    if img is None:
+        return {}
+        
     if not isinstance(img, Image.Image):
         img = Image.fromarray(img)
-    img = img.convert("RGB").resize((224, 224))
+    img = img.convert("RGB")
 
-    # Disable gradient tracking to prevent RAM spikes
+    # Pure PyTorch inference bypasses FastAI DataLoader memory bloat and segfaults
     with torch.no_grad():
-        pred, pred_idx, probs = learn.predict(img)
+        tensor = transform_pipeline(img).unsqueeze(0)  # Shape: [1, 3, 224, 224]
+        logits = learn.model(tensor)
+        probs = torch.softmax(logits, dim=1)[0]
 
-    # Force Python to clean temporary memory immediately
+    # Clean up memory immediately
+    del tensor, logits
     gc.collect()
 
-    return {learn.dls.vocab[i]: float(probs[i]) for i in range(len(probs))}
+    return {vocab[i]: float(probs[i]) for i in range(len(vocab))}
 
 image_input = gr.Image(type="pil")
 
