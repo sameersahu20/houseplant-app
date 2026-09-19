@@ -87,7 +87,7 @@ if uploaded_file is not None:
 st.markdown(
     """
     <style>
-    /* Bottom-left floating glass badge */
+    /* Floating glass badge pinned to bottom-left */
     .footer-badge {
         position: fixed;
         bottom: 20px;
@@ -123,8 +123,16 @@ st.markdown(
         transform: translateY(-1px);
     }
 
-    /* Mobile responsive positioning */
+    /* Mobile adjustments */
     @media (max-width: 640px) {
+        /* Force title to fit in one line on phones */
+        h1 {
+            font-size: 1.62rem !important;
+            white-space: nowrap !important;
+            letter-spacing: -0.4px;
+        }
+
+        /* Adjust footer badge to avoid edge and screen cutoffs */
         .footer-badge {
             left: 12px;
             bottom: calc(16px + env(safe-area-inset-bottom));
