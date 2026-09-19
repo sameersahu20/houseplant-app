@@ -66,26 +66,27 @@ if uploaded_file is not None:
         st.progress(float(prob.item()))
 
 
-
-# --- Bottom-right Footer in my site ---
+# --- Bottom-center Footer on my site ---
 footer_html = """
 <style>
 .custom-footer {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
-    background-color: rgba(20, 20, 24, 0.88);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 8px 16px;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    background-color: rgba(20, 20, 24, 0.90);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    padding: 10px 24px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 14px;
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 500;
     color: #f1f1f1;
     z-index: 99999;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 .custom-footer a {
@@ -97,11 +98,11 @@ footer_html = """
 }
 .custom-footer a:hover {
     color: #38bdf8;
-    transform: translateY(-2px);
+    transform: scale(1.15);
 }
 .custom-footer svg {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     fill: currentColor;
 }
 </style>
