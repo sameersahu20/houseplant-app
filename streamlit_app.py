@@ -43,7 +43,7 @@ def load_model():
 learn, vocab = load_model()
 
 # --- Supported Species List ---
-with st.expander(f"🌿📋 The {len(learn.dls.vocab)} plant species that I can predict!"):
+with st.expander(f"🌿📋 The {len(learn.dls.vocab)} plant species that I can identify!"):
     sorted_species = sorted(vocab)
     # Split the names evenly across 2 columns
     col1, col2 = st.columns(2)
