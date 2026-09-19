@@ -4,15 +4,17 @@ An end-to-end computer vision web application that identifies indoor houseplant 
 
 ## 🌐 Live Application
 
-The classifier is live and accessible globally: [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://houseplant-app-pzpe4hju72mffdn2b5tqdt.streamlit.app/)
+The classifier is live and accessible globally:
+
+[![Streamlit: houseplant-app](https://img.shields.io/badge/Streamlit-houseplant--app-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://houseplant-app-pzpe4hju72mffdn2b5tqdt.streamlit.app/)
 
 ---
 
 ## 👨‍💻 Author
 
-Sameer Sahu  
-LinkedIn: [@sameersahu18](https://www.linkedin.com/in/sameersahu18/?utm_source=gemini)  
-GitHub: [@sameersahu20](https://github.com/sameersahu20?utm_source=gemini)
+Sameer Sahu<br>
+[![LinkedIn: Sameer Sahu](https://img.shields.io/badge/LinkedIn-Sameer%20Sahu-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sameersahu18/)<br>
+[![GitHub: Sameer Sahu](https://img.shields.io/badge/GitHub-Sameer%20Sahu-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sameersahu20)
 
 ---
 
@@ -38,7 +40,7 @@ The application is hosted 24/7 on cloud servers. Instead of running on a persona
 
 ## 📊 Dataset Details
 
-- **Source:** [Kaggle — House Plant Species Dataset](https://www.kaggle.com/datasets/kacpergregorowicz/house-plant-species/code)
+- **Source:** [![Kaggle: House Plant Species Dataset](https://img.shields.io/badge/Kaggle-House%20Plant%20Species%20Dataset-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/kacpergregorowicz/house-plant-species/code)
 - **Classes:** Image dataset containing **47 species** of indoor plants.
 - **Dataset composition:** High-quality photographs of indoor houseplants categorized across diverse indoor lighting environments, pots, and growth stages.
 - **Image preprocessing:** Images are standardized to 224×224 pixels with ImageNet normalization. FastAI transforms apply augmentations such as random flips, perspective shifts, and crops to improve inference generalization.
