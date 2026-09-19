@@ -66,44 +66,60 @@ if uploaded_file is not None:
         st.progress(float(prob.item()))
 
 
-# --- Bottom-center Footer on my site ---
+# --- Universal Responsive Footer ---
 footer_html = """
 <style>
 .custom-footer {
     position: fixed;
     left: 50%;
-    bottom: 24px;
+    bottom: max(16px, env(safe-area-inset-bottom, 16px));
     transform: translateX(-50%);
-    background-color: rgba(20, 20, 24, 0.90);
+    background-color: rgba(20, 20, 24, 0.92);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 9999px;
-    padding: 10px 24px;
-    display: flex;
+    padding: clamp(6px, 1.5vw, 10px) clamp(14px, 3vw, 24px);
+    display: flex !important;
+    flex-direction: row !important;
     align-items: center;
-    gap: 16px;
-    font-size: 16px;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 14px);
+    font-size: clamp(12px, 2.5vw, 15px);
     font-weight: 500;
     color: #f1f1f1;
     z-index: 99999;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+    white-space: nowrap !important;
+    width: max-content !important;
+    max-width: 95vw;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.custom-footer span {
+    white-space: nowrap !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 .custom-footer a {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     color: #d1d5db;
     transition: color 0.2s ease, transform 0.2s ease;
     text-decoration: none;
+    flex-shrink: 0;
 }
 .custom-footer a:hover {
     color: #38bdf8;
     transform: scale(1.15);
 }
 .custom-footer svg {
-    width: 22px;
-    height: 22px;
+    width: clamp(16px, 2.8vw, 20px);
+    height: clamp(16px, 2.8vw, 20px);
     fill: currentColor;
+    flex-shrink: 0;
 }
 </style>
 
