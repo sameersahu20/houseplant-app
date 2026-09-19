@@ -87,7 +87,7 @@ if uploaded_file is not None:
 st.markdown(
     """
     <style>
-    /* Fixed bottom-left badge */
+    /* Footer badge pinned to bottom-left */
     .footer-badge {
         position: fixed;
         bottom: 20px;
@@ -97,7 +97,7 @@ st.markdown(
         align-items: center;
         gap: 8px;
         padding: 8px 16px;
-        background: rgba(22, 27, 34, 0.88);
+        background: rgba(22, 27, 34, 0.85);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         border: 1px solid rgba(255, 255, 255, 0.15);
@@ -105,23 +105,10 @@ st.markdown(
         font-size: 13px;
         color: #e6edf3;
         white-space: nowrap;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     }
 
-    .footer-badge a {
-        color: #58a6ff;
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        margin-left: 4px;
-        transition: color 0.15s ease;
-    }
-
-    .footer-badge a:hover {
-        color: #79c0ff;
-    }
-
-    /* Mobile fine-tuning */
+    /* Keep it snug on smaller mobile screens */
     @media (max-width: 640px) {
         .footer-badge {
             left: 12px;
