@@ -87,16 +87,17 @@ if uploaded_file is not None:
 st.markdown(
     """
     <style>
-    /* Floating glass badge pinned to bottom-left */
+    /* Default: Bottom-Center for Laptops, MacBooks, and Desktops */
     .footer-badge {
         position: fixed;
-        bottom: 20px;
-        left: 20px;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 999999;
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        padding: 8px 16px;
+        padding: 8px 18px;
         background: rgba(22, 27, 34, 0.9);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
@@ -123,18 +124,20 @@ st.markdown(
         transform: translateY(-1px);
     }
 
-    /* Mobile adjustments */
+    /* Mobile: Bottom-Left for iPhones and Android phones */
     @media (max-width: 640px) {
-        /* Force title to fit in one line on phones */
+        /* Keep header on one single line */
         h1 {
             font-size: 1.62rem !important;
             white-space: nowrap !important;
             letter-spacing: -0.4px;
         }
 
-        /* Adjust footer badge to avoid edge and screen cutoffs */
+        /* Snap to bottom-left to avoid bottom-right Streamlit controls */
         .footer-badge {
             left: 12px;
+            right: auto;
+            transform: none;
             bottom: calc(16px + env(safe-area-inset-bottom));
             padding: 6px 12px;
             font-size: 12px;
