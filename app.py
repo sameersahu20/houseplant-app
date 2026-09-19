@@ -12,7 +12,7 @@ MODEL_URL = 'https://huggingface.co/sameersahu20/houseplant_model/resolve/main/h
 
 if not os.path.exists(MODEL_FILE):
     print("Downloading model weights...")
-    with requests.get(MODEL_URL, stream=True, timeout=60) as r:
+    with requests.get(MODEL_URL, stream=True, timeout=120000) as r:
         r.raise_for_status()  # fail loudly on 401/404 instead of saving an error page
         with open(MODEL_FILE, 'wb') as f:
             for chunk in r.iter_content(chunk_size=1024 * 1024):
