@@ -1,20 +1,22 @@
 import os
+import sys
 import pathlib
 import platform
+
+# Cross-platform compatibility patch for models saved on Windows
+if platform.system() == 'Linux':
+    pathlib.WindowsPath = pathlib.PosixPath
+    # Python 3.13/3.14 unpickler lookup compatibility
+    sys.modules['pathlib.WindowsPath'] = pathlib.PosixPath
+
 import requests
 import streamlit as st
 import torch
 import torchvision.transforms as T
 from PIL import Image
-
-# Cross-platform path fix for Linux cloud deployment (must run before loading model)
-if platform.system() == 'Linux':
-    pathlib.WindowsPath = pathlib.PosixPath
-
 from fastai.vision.all import *
 
 st.set_page_config(page_title="Houseplant Classifier", page_icon="🌿")
-
 st.title("🌿🌱 Houseplant Classifier 🌱🌿")
 st.write("Upload a photo of a houseplant to identify its species.")
 
