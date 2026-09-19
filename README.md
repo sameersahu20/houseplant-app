@@ -1,4 +1,4 @@
-### 🌿🌱🪴 Houseplant Classifier 🪴🌱🌿
+## 🌿🌱🪴 Houseplant Classifier 🪴🌱🌿
 
 An end-to-end computer vision web application that identifies indoor houseplant varieties from uploaded photos in real time.
 
