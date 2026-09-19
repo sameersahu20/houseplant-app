@@ -20,6 +20,22 @@ st.set_page_config(page_title="Houseplant Classifier", page_icon="🌿")
 st.title("🌿🌱 Houseplant Classifier 🌱🌿")
 st.write("Upload a photo of a houseplant to identify its species.")
 
+# --- Supported Species List ---
+with st.expander(f"📋 View all {len(vocab)} supported plant species"):
+    sorted_species = sorted(vocab)
+    # Split the names evenly across 2 columns
+    col1, col2 = st.columns(2)
+    mid = (len(sorted_species) + 1) // 2
+    
+    with col1:
+        for plant in sorted_species[:mid]:
+            st.markdown(f"• {plant}")
+    with col2:
+        for plant in sorted_species[mid:]:
+            st.markdown(f"• {plant}")
+
+st.caption("Want to read about the dataset & architecture? [View project on GitHub](https://github.com/sameersahu20/houseplant-app)")
+
 MODEL_FILE = 'houseplant_model.pkl'
 MODEL_URL = 'https://huggingface.co/sameersahu21/houseplant-classifier-model/resolve/main/houseplant_model.pkl'
 
