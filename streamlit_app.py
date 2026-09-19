@@ -17,8 +17,8 @@ from PIL import Image
 from fastai.vision.all import *
 
 st.set_page_config(page_title="Houseplant Classifier", page_icon="🌿")
-st.title("🌿🌱 Houseplant Classifier 🌱🌿")
-st.write("Upload a photo of a houseplant to identify its species.")
+st.title("🌿🌱🪴 Houseplant Classifier 🪴🌱🌿")
+st.write("Upload a photo of a houseplant for me to identify its species.")
 
 
 MODEL_FILE = 'houseplant_model.pkl'
